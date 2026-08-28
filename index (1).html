@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A personal guide to Athens, Nafplio and the Peloponnese — where to stay, eat, and what to see." />
+  <title>Athens + Peloponnese — Notes from Yiannis</title>
+  <style>
+    :root {
+      --ink: #1e2a32;
+      --muted: #647079;
+      --paper: #f7f1e7;
+      --paper-2: #fffaf1;
+      --navy: #153547;
+      --sea: #2d6f83;
+      --terracotta: #bd6547;
+      --olive: #737654;
+      --sand: #dfcda9;
+      --line: rgba(30, 42, 50, .13);
+      --white: #fffdf9;
+      --shadow: 0 22px 60px rgba(31, 45, 52, .11);
+      --radius: 24px;
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% -10%, rgba(189, 101, 71, .12), transparent 35rem),
+        radial-gradient(circle at 100% 8%, rgba(45, 111, 131, .10), transparent 30rem),
+        var(--paper);
+      font-family: var(--sans);
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    img { display: block; width: 100%; }
+    .shell { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(15px);
+      background: rgba(247, 241, 231, .84);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .brand { font-family: var(--serif); font-weight: 700; font-size: 20px; letter-spacing: -.02em; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 22px; font-size: 14px; }
+    .nav-links a { text-decoration: none; color: var(--muted); }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta { padding: 10px 14px; border-radius: 999px; background: var(--navy); color: white !important; }
+
+    .hero { padding: 62px 0 28px; }
+    .hero-grid { display: grid; grid-template-columns: 1.04fr .96fr; gap: 34px; align-items: stretch; }
+    .kicker { display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: .13em; font-size: 12px; font-weight: 750; color: var(--terracotta); }
+    .kicker::before { content: ''; width: 34px; height: 1px; background: currentColor; }
+    h1, h2, h3 { font-family: var(--serif); line-height: 1.05; margin: 0; letter-spacing: -.035em; }
+    h1 { font-size: clamp(48px, 7vw, 84px); max-width: 780px; margin-top: 20px; }
+    .hero-copy { font-size: 18px; max-width: 680px; color: var(--muted); margin: 24px 0 30px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      display: inline-flex; align-items: center; gap: 9px; padding: 13px 17px; border-radius: 999px;
+      text-decoration: none; font-weight: 700; font-size: 14px; border: 1px solid var(--line); background: rgba(255,255,255,.46);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(31,45,52,.1); background: var(--white); }
+    .button.primary { background: var(--navy); color: white; border-color: var(--navy); }
+    .button svg { width: 17px; height: 17px; }
+
+    .hero-art { min-height: 530px; position: relative; border-radius: 34px; overflow: hidden; box-shadow: var(--shadow); background: #d3c1a0; }
+    .hero-art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(9,27,36,0) 38%, rgba(9,27,36,.62) 100%); }
+    .hero-art img { height: 100%; object-fit: cover; position: absolute; inset: 0; }
+    .hero-badge { position: absolute; z-index: 2; left: 22px; right: 22px; bottom: 20px; padding: 18px 19px; border: 1px solid rgba(255,255,255,.25); border-radius: 19px; color: white; background: rgba(11,35,46,.56); backdrop-filter: blur(12px); }
+    .hero-badge strong { display: block; font-family: var(--serif); font-size: 24px; margin-bottom: 4px; }
+    .hero-badge span { opacity: .87; font-size: 14px; }
+
+    .route { margin: 46px auto 90px; background: rgba(255,255,255,.44); border: 1px solid var(--line); border-radius: var(--radius); padding: 23px 24px; display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center; }
+    .route-label { text-transform: uppercase; font-weight: 800; font-size: 11px; letter-spacing: .12em; color: var(--terracotta); white-space: nowrap; }
+    .route-line { display: flex; align-items: center; gap: 10px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+    .route-line::-webkit-scrollbar { display: none; }
+    .stop { display: flex; align-items: center; gap: 9px; font-weight: 750; white-space: nowrap; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--navy); box-shadow: 0 0 0 5px rgba(21,53,71,.09); }
+    .arrow { color: #a59a89; font-size: 17px; }
+    .optional { color: var(--muted); font-weight: 600; }
+
+    section { scroll-margin-top: 92px; }
+    .section { padding: 10px 0 94px; }
+    .section-head { display: grid; grid-template-columns: 1fr .8fr; gap: 40px; align-items: end; margin-bottom: 30px; }
+    .section-number { font-size: 12px; font-weight: 800; letter-spacing: .12em; color: var(--terracotta); text-transform: uppercase; margin-bottom: 13px; }
+    h2 { font-size: clamp(38px, 5vw, 60px); }
+    .section-intro { color: var(--muted); font-size: 17px; margin: 0; }
+
+    .athens-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 22px; }
+    .panel { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 27px; box-shadow: 0 8px 30px rgba(31,45,52,.045); }
+    .panel.dark { background: var(--navy); color: #fff; border-color: transparent; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .11em; font-size: 11px; font-weight: 800; color: var(--terracotta); margin-bottom: 12px; }
+    .dark .eyebrow { color: #e9b99e; }
+    h3 { font-size: 29px; margin-bottom: 10px; }
+    .panel p { margin: 0; color: var(--muted); }
+    .panel.dark p { color: rgba(255,255,255,.76); }
+    .chips { display: flex; flex-wrap: wrap; gap: 9px; margin: 19px 0 25px; }
+    .chip { padding: 8px 11px; border: 1px solid var(--line); border-radius: 999px; font-size: 13px; font-weight: 700; background: #fbf5ea; }
+    .dark .chip { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14); }
+    .callout { margin-top: 19px; padding-top: 19px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; align-items: center; }
+    .dark .callout { border-color: rgba(255,255,255,.14); }
+    .callout strong { display: block; }
+    .callout small { display: block; color: var(--muted); margin-top: 2px; }
+    .dark .callout small { color: rgba(255,255,255,.62); }
+
+    .photo-strip { margin: 22px 0 84px; display: grid; grid-template-columns: 1.4fr .8fr; gap: 18px; }
+    .photo { min-height: 310px; overflow: hidden; border-radius: var(--radius); position: relative; background: #c8b894; }
+    .photo img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+    .photo span { position: absolute; z-index: 2; left: 17px; bottom: 15px; background: rgba(16,37,47,.72); color: white; border-radius: 999px; padding: 8px 11px; font-size: 12px; font-weight: 700; backdrop-filter: blur(7px); }
+
+    .stay-card { display: grid; grid-template-columns: 1fr .8fr; padding: 0; overflow: hidden; }
+    .stay-copy { padding: 30px; }
+    .stay-photo { min-height: 370px; background: #d5c4a7; position: relative; }
+    .stay-photo img { height: 100%; object-fit: cover; position: absolute; inset: 0; }
+
+    .food-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; margin-top: 22px; }
+    .food-card { background: rgba(255,255,255,.55); border: 1px solid var(--line); border-radius: 21px; padding: 23px; min-height: 205px; display: flex; flex-direction: column; }
+    .food-card .tag { color: var(--terracotta); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .food-card h3 { margin-top: 12px; font-size: 25px; }
+    .food-card p { color: var(--muted); font-size: 14px; margin: 0 0 18px; }
+    .text-link { margin-top: auto; font-size: 13px; font-weight: 800; text-decoration: none; }
+    .text-link:hover { text-decoration: underline; }
+
+    .places { display: grid; grid-template-columns: repeat(2, 1fr); gap: 19px; }
+    .place { min-height: 360px; border-radius: var(--radius); overflow: hidden; position: relative; background: #b5aa92; box-shadow: var(--shadow); }
+    .place img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+    .place::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,25,34,.02), rgba(5,25,34,.78)); }
+    .place-copy { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; padding: 25px; color: white; }
+    .place-copy .meta { text-transform: uppercase; letter-spacing: .11em; font-size: 10px; font-weight: 800; color: #f0c0a5; }
+    .place-copy h3 { font-size: 32px; margin: 7px 0 8px; }
+    .place-copy p { color: rgba(255,255,255,.8); font-size: 14px; max-width: 590px; margin: 0; }
+    .place-copy .tiny { margin-top: 10px; opacity: .72; font-size: 12px; }
+    .guide-note { margin-top: 20px; display: grid; grid-template-columns: auto 1fr; gap: 17px; align-items: start; background: #e8ddc6; border-radius: 21px; padding: 23px; }
+    .guide-icon { width: 48px; height: 48px; border-radius: 16px; background: var(--terracotta); color: white; display: grid; place-items: center; font-size: 22px; }
+    .guide-note h3 { font-size: 24px; margin: 0 0 6px; }
+    .guide-note p { margin: 0; color: #5c625f; }
+
+    .detours { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .detour { border-radius: 28px; overflow: hidden; background: var(--white); border: 1px solid var(--line); }
+    .detour-img { height: 260px; position: relative; background: #bcae8f; }
+    .detour-img img { height: 100%; object-fit: cover; }
+    .detour-body { padding: 25px; }
+    .detour-body h3 { font-size: 30px; }
+    .detour-body p { color: var(--muted); margin: 10px 0 0; }
+    .detour-body .note { border-left: 3px solid var(--terracotta); padding-left: 14px; margin-top: 18px; color: var(--ink); font-size: 14px; }
+
+    .itinerary { display: grid; gap: 12px; }
+    .it-row { display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: start; }
+    .it-n { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--terracotta); font-weight: 800; font-size: 12px; }
+    .it-row strong { display: block; }
+    .it-row span { color: rgba(255,255,255,.66); font-size: 13px; }
+
+    footer { border-top: 1px solid var(--line); padding: 29px 0 44px; color: var(--muted); font-size: 12px; }
+    .footer-grid { display: flex; justify-content: space-between; gap: 30px; align-items: flex-start; }
+    .credits { max-width: 760px; }
+    .credits a { color: var(--muted); }
+    .print { border: 0; background: transparent; font: inherit; color: var(--navy); font-weight: 800; cursor: pointer; padding: 0; }
+
+    @media (max-width: 860px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero-grid, .section-head, .athens-grid, .stay-card { grid-template-columns: 1fr; }
+      .hero-art { min-height: 420px; }
+      .route { grid-template-columns: 1fr; gap: 10px; }
+      .food-grid { grid-template-columns: 1fr; }
+      .places, .detours { grid-template-columns: 1fr; }
+      .photo-strip { grid-template-columns: 1fr; }
+      .photo { min-height: 280px; }
+      .photo:nth-child(2) { display: none; }
+    }
+    @media (max-width: 540px) {
+      .shell { width: min(100% - 24px, 1160px); }
+      .hero { padding-top: 38px; }
+      h1 { font-size: 49px; }
+      .hero-copy { font-size: 16px; }
+      .hero-art { min-height: 350px; border-radius: 26px; }
+      .section { padding-bottom: 72px; }
+      .panel, .stay-copy { padding: 22px; }
+      .places .place { min-height: 390px; }
+      .detour-img { height: 220px; }
+      .footer-grid { flex-direction: column; }
+    }
+    @media print {
+      .nav, .actions, .print { display: none !important; }
+      body { background: white; }
+      .section { break-inside: avoid; }
+      .hero { padding-top: 20px; }
+      .hero-art { min-height: 330px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="shell nav-inner">
+      <a class="brand" href="#top">Athens + Peloponnese</a>
+      <div class="nav-links">
+        <a href="#athens">Athens</a>
+        <a href="#nafplio">Nafplio</a>
+        <a href="#sites">Ancient sites</a>
+        <a href="#detours">Detours</a>
+        <a class="nav-cta" href="https://www.google.com/maps/@/data=!3m1!4b1!4m3!11m2!2sTYIeCTU9sXLKOCtB-I7OhaJyyAe3rg!3e3?entry=tts&amp;g_ep=EgoyMDI2MDUwMi4wKgBIAVAD&amp;skid=3ae2dd7c-1841-4350-a925-fb558728c0f2" target="_blank" rel="noreferrer">Athens map ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero shell">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">Notes from Yiannis</div>
+          <h1>Athens, Nafplio &amp; a little more Peloponnese.</h1>
+          <p class="hero-copy">Most of my personal recommendations are for Nafplio and the Peloponnese. For Athens, I don’t have a big list of my own — I’d stay central, use the excellent curated map a friend shared with me, and keep the city part flexible.</p>
+          <div class="actions">
+            <a class="button primary" href="https://www.google.com/maps/@/data=!3m1!4b1!4m3!11m2!2sTYIeCTU9sXLKOCtB-I7OhaJyyAe3rg!3e3?entry=tts&amp;g_ep=EgoyMDI2MDUwMi4wKgBIAVAD&amp;skid=3ae2dd7c-1841-4350-a925-fb558728c0f2" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              Open the Athens map
+            </a>
+            <a class="button" href="#nafplio">Jump to Nafplio ↓</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/The_Acropolis_of_Athens_from_the_neighborhood_of_Plaka_on_January_30%2C_2020.jpg" alt="The Acropolis seen from Plaka in Athens" />
+          <div class="hero-badge"><strong>Stay central in Athens.</strong><span>Think Thiseio, Plaka, Kolonaki, or around the Acropolis — the point is to be able to walk out the door and be in the city.</span></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section shell" id="athens">
+      <div class="section-head">
+        <div><div class="section-number">01 · Athens</div><h2>Just a couple of practical Athens tips.</h2></div>
+        <p class="section-intro">I don’t have a long personal list for Athens. I would mainly stay somewhere in the broad area around <strong>Thiseio, Plaka, the Acropolis or Kolonaki</strong> so you can walk around easily.</p>
+      </div>
+
+      <div class="athens-grid">
+        <article class="panel dark">
+          <div class="eyebrow">The most useful link</div>
+          <h3>A friend’s curated Athens map.</h3>
+          <p>A friend shared this map with me and it has a good selection of places around Athens. I’d use it as the starting point rather than treating my notes here as an Athens guide.</p>
+          <div class="chips"><span class="chip">friend’s picks</span><span class="chip">food</span><span class="chip">drinks</span><span class="chip">places to explore</span></div>
+          <a class="button" style="background:white;color:var(--navy);border-color:white" href="https://www.google.com/maps/@/data=!3m1!4b1!4m3!11m2!2sTYIeCTU9sXLKOCtB-I7OhaJyyAe3rg!3e3?entry=tts&amp;g_ep=EgoyMDI2MDUwMi4wKgBIAVAD&amp;skid=3ae2dd7c-1841-4350-a925-fb558728c0f2" target="_blank" rel="noreferrer">Open the map ↗</a>
+        </article>
+
+        <article class="panel">
+          <div class="eyebrow">One destination dinner</div>
+          <h3>Varoulko Seaside</h3>
+          <p>If you want a well-known fine-dining seafood meal, this is the one I’d point you toward. It’s down by the water in Mikrolimano, so treat it as an evening destination rather than something you casually walk to from Plaka.</p>
+          <div class="callout">
+            <div><strong>Varoulko Seaside</strong><small>Seafood · fine dining · Piraeus</small></div>
+            <a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Varoulko+Seaside+Piraeus" target="_blank" rel="noreferrer">Map ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="photo-strip shell" aria-hidden="true">
+      <div class="photo"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/5/57/The_Acropolis_of_Athens_from_the_neighborhood_of_Plaka_on_January_30%2C_2020.jpg" alt=""/><span>Plaka · Athens</span></div>
+      <div class="photo"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/The_castle_of_Akronaplia_and_the_old_town_of_Nafplio_from_the_fortress_of_Palamidi_on_30_March_2019.jpg" alt=""/><span>Next stop: Nafplio</span></div>
+    </div>
+
+    <section class="section shell" id="nafplio">
+      <div class="section-head">
+        <div><div class="section-number">02 · Nafplio</div><h2>Make Nafplio your Peloponnese base.</h2></div>
+        <p class="section-intro">For a first trip, this is the easy choice. It’s beautiful, compact, good at night, and puts Epidaurus and Mycenae within very easy reach.</p>
+      </div>
+
+      <article class="panel stay-card">
+        <div class="stay-copy">
+          <div class="eyebrow">Where to stay</div>
+          <h3>Stay inside the Old Town.</h3>
+          <p>There are plenty of small boutique hotels that are nice, so you don’t need to over-optimize. One place I’ve stayed at is <strong>Aethra Boutique Rooms</strong>, which I’m happy to recommend as a reference point.</p>
+          <div class="actions" style="margin-top:22px"><a class="button primary" href="https://aethra.gr/" target="_blank" rel="noreferrer">Aethra Boutique Rooms ↗</a><a class="button" href="https://www.google.com/maps/search/?api=1&amp;query=Nafplio+Old+Town" target="_blank" rel="noreferrer">Old Town on map ↗</a></div>
+        </div>
+        <div class="stay-photo"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/The_castle_of_Akronaplia_and_the_old_town_of_Nafplio_from_the_fortress_of_Palamidi_on_30_March_2019.jpg" alt="View of Nafplio Old Town from Palamidi" /></div>
+      </article>
+
+      <div style="margin-top:43px"><div class="eyebrow">Where I’d eat</div><h3 style="font-size:38px">Three different moods.</h3></div>
+      <div class="food-grid">
+        <article class="food-card"><div class="tag">Nice night out</div><h3>Valaora</h3><p>Go here when you want the more polished, fancy setup — good for a proper evening rather than a quick taverna dinner.</p><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Valaora+Nafplio" target="_blank" rel="noreferrer">Open in Maps ↗</a></article>
+        <article class="food-card"><div class="tag">Classic choice</div><h3>Omorfo Tavernaki <span style="font-family:var(--sans);font-size:15px;color:var(--muted)">or</span> Alaloum</h3><p>Both are easy, dependable choices when what you want is a good Greek meal in town without making the dinner into an event.</p><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Omorfo+Tavernaki+Nafplio" target="_blank" rel="noreferrer">Omorfo ↗</a> &nbsp;·&nbsp; <a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Alaloum+Nafplio" target="_blank" rel="noreferrer">Alaloum ↗</a></article>
+        <article class="food-card"><div class="tag">More local / original</div><h3>T’Alonia</h3><p>For something that feels more authentic and less “we’re eating in tourist Nafplio,” drive out to Pyrgiotika village.</p><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=T%27Alonia+Pyrgiotika+Greece" target="_blank" rel="noreferrer">Open in Maps ↗</a></article>
+      </div>
+    </section>
+
+    <section class="section shell" id="sites">
+      <div class="section-head">
+        <div><div class="section-number">03 · The ancient sites</div><h2>Two places I would not skip.</h2></div>
+        <p class="section-intro">Think of Epidaurus and Mycenae as historical places to visit while you’re based in Nafplio — not as separate stops where you need to stay. Epidaurus can also fit naturally on the drive between Athens and Nafplio.</p>
+      </div>
+
+      <div class="places">
+        <article class="place">
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/5/5b/The_great_theater_of_Epidaurus%2C_designed_by_Polykleitos_the_Younger_in_the_4th_century_BC%2C_Sanctuary_of_Asklepeios_at_Epidaurus%2C_Greece_%2814015010416%29.jpg" alt="Ancient Theatre of Epidaurus" />
+          <div class="place-copy"><div class="meta">Historical visit · near Nafplio</div><h3>Epidaurus</h3><p>This is the iconic theater — arguably the most prestigious stage in Greece. In spring you’re not going for a performance; the big productions are during the summer festival. It’s still absolutely worth seeing the theater and sanctuary.</p><div class="tiny">Easy to visit from Nafplio, or stop there while driving between Athens and Nafplio.</div></div>
+        </article>
+        <article class="place">
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/3/37/Lion_Gate_-_Mycenae_by_Joy_of_Museums.jpg" alt="Lion Gate at Mycenae" />
+          <div class="place-copy"><div class="meta">Historical visit · very close to Nafplio</div><h3>Mycenae</h3><p>The legendary kingdom of Agamemnon, leader of the Greeks in the Trojan War. The citadel, royal tombs and museum make the story much more tangible than you might expect.</p><div class="tiny">Allow roughly 1½–2 hours for the site + tombs + museum, then return to Nafplio.</div></div>
+        </article>
+      </div>
+
+      <div class="guide-note">
+        <div class="guide-icon">✦</div>
+        <div>
+          <h3>A guide made a surprisingly big difference.</h3>
+          <p>I’ve visited these places several times. This year we took a licensed guide and liked it a lot — especially with kids, because they adjust the tour and weave in mythology instead of just reciting dates. These are two licensed guides you can contact directly; WhatsApp or Viber should be fine:</p>
+          <div class="chips" style="margin:16px 0 12px">
+            <a class="chip" style="text-decoration:none" href="https://wa.me/306970123722" target="_blank" rel="noreferrer"><strong>Vassilis</strong>&nbsp; +30 697 012 3722 ↗</a>
+            <a class="chip" style="text-decoration:none" href="https://wa.me/306977599870" target="_blank" rel="noreferrer"><strong>Theodore</strong>&nbsp; +30 697 759 9870 ↗</a>
+          </div>
+          <p><strong>Price reference:</strong> we paid €100 for the guided tour of Mycenae. Entrance tickets were separate. Ask them directly about current pricing and about combining Mycenae and Epidaurus.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="detours">
+      <div class="section-head">
+        <div><div class="section-number">04 · Bigger extensions</div><h2>Olympia and Hydra are bigger trips worth considering.</h2></div>
+        <p class="section-intro">These are not quick historical outings like Epidaurus or Mycenae. Each adds real travel time and may be worth an overnight stay. If time allows, you can absolutely include both.</p>
+      </div>
+
+      <div class="detours">
+        <article class="detour">
+          <div class="detour-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Ancient_Olympia%2C_Greece2.jpg" alt="Ancient Olympia archaeological site" /></div>
+          <div class="detour-body"><div class="eyebrow">History + mountain villages</div><h3>Olympia</h3><p>It’s a meaningful detour, but it’s farther: think 2½+ hours of driving from Nafplio. If you do it, I’d consider spending a night there rather than forcing it into a day trip.</p><p class="note"><strong>The scenic version:</strong> take the more winding route through villages like <strong>Stemnitsa, Dimitsana and Vytina</strong>. Then head back toward Athens from Olympia on your last day.</p></div>
+        </article>
+        <article class="detour">
+          <div class="detour-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/6/68/Harbour_of_Hydra_island_%2843058393960%29.jpg" alt="Hydra harbour in Greece" /></div>
+          <div class="detour-body"><div class="eyebrow">Island trip</div><h3>Hydra</h3><p>Hydra is extremely beautiful and wonderfully simple: essentially one compact harbor town you explore on foot, and visitors don’t use cars on the island.</p><p><strong>From Nafplio:</strong> you can also do Hydra as a day trip. Drive to Metochi, leave the car on the mainland, and take the roughly 20-minute water taxi across to Hydra. Spend the day walking around the town and harbor, then return to Metochi and drive back to Nafplio.</p><p class="note"><strong>From Athens:</strong> another option is to take the ferry from Piraeus to Hydra and potentially spend the night there. Instead of returning to Athens by ferry, you can continue by water taxi to Metochi and then drive on toward Nafplio. The trick is the car: you’ll need to arrange a way to pick up a rental car around Metochi and return it later in Athens. A friend did exactly this this summer, so it is possible — I’d just arrange the rental logistics in advance rather than assume you can pick up a car on arrival.</p></div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="shell footer-grid">
+      <div class="credits">Personal recommendations. Hours, ferry schedules and seasonal openings change, so double-check those before the trip. Photography: Wikimedia Commons — George E. Koronaios (Athens), George E. Koronaios (Nafplio), Carole Raddato (Epidaurus), Joy of Museums (Mycenae), dronepicr (Hydra), and Wikimedia Commons contributor image for Olympia. Images remain under their respective Creative Commons licenses.</div>
+      <button class="print" type="button" onclick="window.print()">Print / save as PDF</button>
+    </div>
+  </footer>
+</body>
+</html>
